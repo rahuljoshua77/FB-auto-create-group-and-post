@@ -32,6 +32,7 @@ dc['loggingPrefs'] = {'driver': 'OFF', 'server': 'OFF', 'browser': 'OFF'}
 opts.add_argument('--ignore-ssl-errors=yes')
 opts.add_argument("--start-maximized")
 opts.add_argument('--ignore-certificate-errors')
+opts.add_argument("window-size=200,100")
 import os
 
 opts.add_argument('--disable-blink-features=AutomationControlled')
@@ -49,7 +50,6 @@ def xpath_long(el):
     element_all = wait(browser,30).until(EC.presence_of_element_located((By.XPATH, el)))
     return element_all.click()
 
- 
 
 def xpath_sel(el):
     element_all = wait(browser,30).until(EC.presence_of_element_located((By.CSS_SELECTOR, el)))
@@ -161,22 +161,6 @@ def main(data_file):
             except:
                 pass
             xpath_long('(//div[@aria-label="Suka"])[1]')
-            
-            sleep(1)
-            try:
-                xpath_fast("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[2]/div/div/div[4]/div/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div/div[4]/div[3]/div")
-            except:
-                xpath_fast('/html/body/div[1]/div/div[1]/div/div[5]/div/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div[4]/div/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div/div[4]/div[3]/div')
-            if "\n" in deskripsi_grup:
-                for i in deskripsi_grup.split("\n"):
-                    xpath_type('//label[@aria-label="Keterangan"]//textarea',i)
-                    sleep(0.5)
-                    xpath_type('//label[@aria-label="Keterangan"]//textarea',Keys.ENTER)
-            else:
-                xpath_type('//label[@aria-label="Keterangan"]//textarea',deskripsi_grup)
-            xpath_long('//div[@aria-label="Simpan"]')
-            sleep(4)
-            
             print(f"{date_show()} [{user}] Success like status")
             sleep(5)
 
